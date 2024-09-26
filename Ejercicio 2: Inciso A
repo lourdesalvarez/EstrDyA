@@ -1,0 +1,56 @@
+def buscar(self, numero):
+        return self._buscar_recursivo(self.raiz, None , numero)
+    
+    def _buscar_recursivo(self, nodo_actual, padre, numero):
+        if nodo_actual is None:
+            return None, None, None
+        
+        if numero == nodo_actual.valor:
+            hermano = None
+            if padre:
+                if padre.izquierdo == nodo_actual:
+                    hermano = padre.derecho
+                else:
+                    hermano = padre.izquierdo
+                return nodo_actual,padre,hermano
+            else: return nodo_actual,0,0
+        if numero < nodo_actual.valor :
+            return self._buscar_recursivo(nodo_actual.izquierdo, nodo_actual, numero)
+        else: 
+            return self._buscar_recursivo(nodo_actual.derecho, nodo_actual, numero)
+        
+    def mostrar_resultado(self, valor, nodo, padre, hermano):
+        if nodo:
+            print(f"El valor {valor} se encuentra en el nodo {nodo.valor}.")
+            if padre != 0:
+                print(f"El padre del nodo {nodo.valor} es {padre.valor}.")
+            else:
+                print("El nodo no tiene padre, es la raiz.")
+
+            if hermano != 0:
+                print(f"El hermano del nodo {nodo.valor} es {hermano.valor}.")
+            else:
+                print("El nodo no tiene hermano.")
+        else:
+            print(f"El valor {valor} no se encuentra en el árbol.")
+        
+
+
+# Ejemplo de uso
+if __name__ == "__main__":
+    # Crear un árbol binario
+    arbol = ArbolBinario()
+
+    # Insertar valores en el árbol
+    arbol.insertar(10)
+    arbol.insertar(5)
+    arbol.insertar(20)
+    arbol.insertar(3)
+    arbol.insertar(7)
+
+    # Imprimir los valores del árbol en orden
+    print("Recorrido inorden del árbol:")
+    arbol.inorden(arbol.raiz)
+    numero = int(input("Ingrese un numero para buscar en el arbol:"))
+    nodo, padre, hermano = arbol.buscar(numero)
+    arbol.mostrar_resultado(numero, nodo, padre, hermano)
