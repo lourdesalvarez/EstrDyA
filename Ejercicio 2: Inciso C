@@ -1,0 +1,44 @@
+def mostrar_altura_recursivo(self, altura):
+        if altura is None:
+            return 0
+        else:
+            return 1 + max(self.mostrar_altura_recursivo(altura.izquierdo), self.mostrar_altura_recursivo(altura.derecho))
+
+
+# Ejemplo de uso
+if __name__ == "__main__":
+    # Crear un árbol binario
+    arbol = ArbolBinario()
+
+    # Insertar valores en el árbol
+    arbol.insertar(10)
+    arbol.insertar(5)
+    arbol.insertar(20)
+    arbol.insertar(3)
+    arbol.insertar(7)
+
+    # Imprimir los valores del árbol en orden
+    while True:
+        print("\nMenú\n")
+        print("1. contar")
+        print("2. buscar en el arbol")
+        print("3. Mostrar")
+        print("4. mostrar altura")
+        print("5. Salir")
+        op = int(input("Ingrese opción: "))
+    
+        if op == 1:
+
+            print(f"El número de nodos en el árbol es: {arbol.contar_nodos_recursivo(arbol.raiz)}")
+        elif op == 2:
+            numero = int(input("Ingrese un numero para buscar en el arbol:"))
+            nodo, padre, hermano = arbol.buscar(numero)
+            arbol.mostrar_resultado(numero, nodo, padre, hermano)
+        elif op == 3:
+            print("Recorrido inorden del árbol:")
+            arbol.inorden(arbol.raiz)
+        elif op == 4:
+            print(f"La altura del árbol es: {arbol.mostrar_altura_recursivo(arbol.raiz)}")
+        elif op == 5:
+            print("Saliendo...")
+            break
