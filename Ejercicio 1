@@ -1,0 +1,15 @@
+Objeto de dato Arbol Binario 
+class Nodo:
+    def __init__(self, valor):
+        # Inicializamos el valor del nodo
+        self.valor = valor  
+        # Los punteros hacia los hijos izquierdo y derecho comienzan como None
+        # ya que inicialmente el nodo no tiene hijos
+        self.izquierdo = None  
+        self.derecho = None  
+
+# Clase que representa el árbol binario
+class ArbolBinario:
+    def __init__(self):
+        # Inicialmente, el árbol está vacío, por lo tanto, la raíz es None
+        self.raiz = None 
